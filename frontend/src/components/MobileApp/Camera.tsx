@@ -100,7 +100,7 @@ export default function Camera({
           </Button>
         </div>
       ) : step === "prompt" && photo ? (
-        <div className="flex flex-col h-2/3 gap-4 p-4">
+        <div className="flex flex-col h-2/3 gap-4">
           <input
             type="text"
             value={prompt}
