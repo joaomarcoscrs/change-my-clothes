@@ -9,7 +9,7 @@ export default function Camera() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    const initCamera = async () => {
+    async function initCamera() {
       try {
         const cameraStream = await navigator.mediaDevices.getUserMedia({
           video: true,
@@ -18,7 +18,7 @@ export default function Camera() {
       } catch (error) {
         console.error("Error accessing camera:", error);
       }
-    };
+    }
 
     initCamera();
 
