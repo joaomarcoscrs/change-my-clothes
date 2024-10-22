@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +6,7 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 export default function Camera() {
   const [stream, setStream] = useState<MediaStream | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const initCamera = async () => {
@@ -28,6 +29,32 @@ export default function Camera() {
     };
   }, []);
 
+  const setVideoRef = useCallback(
+    (videoElement: HTMLVideoElement | null) => {
+      if (videoElement) {
+        videoRef.current = videoElement;
+        videoElement.srcObject = stream;
+      }
+    },
+    [stream]
+  );
+
+  const takePhoto = async () => {
+    if (videoRef.current) {
+      const canvas = document.createElement("canvas");
+      canvas.width = videoRef.current.videoWidth;
+      canvas.height = videoRef.current.videoHeight;
+      canvas.getContext("2d")?.drawImage(videoRef.current, 0, 0);
+      const photo = canvas.toDataURL("image/jpeg");
+
+      // Here you can do something with the photo, like:
+      // - Save it to state
+      // - Send it to a server
+      // - Download it
+      console.log("Photo taken:", photo);
+    }
+  };
+
   return (
     <>
       {stream ? (
@@ -35,17 +62,14 @@ export default function Camera() {
           <video
             autoPlay
             playsInline
-            ref={(videoElement) => {
-              if (videoElement) {
-                videoElement.srcObject = stream;
-              }
-            }}
+            ref={setVideoRef}
             className="w-full h-full object-cover"
           />
           <Button
             isIconOnly
             className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-transparent p-0 border-0"
             aria-label="Take a photo"
+            onClick={takePhoto}
           >
             <div className="w-full h-full rounded-full border-4 border-white flex items-center justify-center">
               <div className="w-[90%] h-[90%] rounded-full bg-white"></div>
