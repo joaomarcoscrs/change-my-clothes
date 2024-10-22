@@ -1,3 +1,5 @@
+import "@fontsource/inter";
+
 export default function DefaultLayout({
   children,
 }: {
@@ -5,7 +7,7 @@ export default function DefaultLayout({
 }) {
   return (
     <div
-      className="dark text-foreground relative flex flex-col h-screen"
+      className="dark text-foreground relative flex flex-col h-screen font-inter"
       style={{
         background: `
         linear-gradient(0deg, #111827, #111827),
