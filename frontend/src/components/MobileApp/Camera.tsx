@@ -4,7 +4,13 @@ import { Spinner } from "@nextui-org/spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 
-export default function Camera() {
+export default function Camera({
+  step,
+  setStep,
+}: {
+  step: "picture" | "prompt";
+  setStep: (step: "picture" | "prompt") => void;
+}) {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -83,7 +89,7 @@ export default function Camera() {
             onClick={takePhoto}
           >
             <div className="w-full h-full rounded-full border-4 border-white flex items-center justify-center">
-              <div className="w-[90%] h-[90%] rounded-full bg-white"></div>
+              <div className="w-[90%] h-[90%] rounded-full bg-white" />
             </div>
           </Button>
           <Button
