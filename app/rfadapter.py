@@ -16,7 +16,8 @@ def infer(imagebase64, prompt):
     }
     response = requests.post(url, headers=headers, data=json.dumps(payload))
     if response.status_code == 200:
-        return response.json()
+        r = response.json()
+        return r['outputs'][0]['output']['value']
     else:
         return f"Error: {response.status_code}, {response.text}"
 
