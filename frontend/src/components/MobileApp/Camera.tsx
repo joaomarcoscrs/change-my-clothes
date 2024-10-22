@@ -88,11 +88,11 @@ export default function Camera() {
           </Button>
           <Button
             isIconOnly
-            className="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-white/50 backdrop-blur-md p-0 border-0"
+            className="absolute bottom-4 right-4 bg-white/50 backdrop-blur-md p-0 border-0"
             aria-label="Open gallery"
             onClick={openGallery}
           >
-            <FontAwesomeIcon icon={faImage} />
+            <FontAwesomeIcon size="lg" icon={faImage} />
           </Button>
         </div>
       ) : (
