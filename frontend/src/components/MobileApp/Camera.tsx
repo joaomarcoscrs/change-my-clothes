@@ -12,6 +12,8 @@ export default function Camera({
   setStep: (step: "picture" | "prompt") => void;
 }) {
   const [stream, setStream] = useState<MediaStream | null>(null);
+  const [photo, setPhoto] = useState<string | null>(null);
+  const [prompt, setPrompt] = useState<string>("");
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -51,13 +53,9 @@ export default function Camera({
       canvas.width = videoRef.current.videoWidth;
       canvas.height = videoRef.current.videoHeight;
       canvas.getContext("2d")?.drawImage(videoRef.current, 0, 0);
-      const photo = canvas.toDataURL("image/jpeg");
-
-      // Here you can do something with the photo, like:
-      // - Save it to state
-      // - Send it to a server
-      // - Download it
-      console.log("Photo taken:", photo);
+      const photoData = canvas.toDataURL("image/jpeg");
+      setPhoto(photoData);
+      setStep("prompt");
     }
   }
 
@@ -74,7 +72,7 @@ export default function Camera({
 
   return (
     <>
-      {stream ? (
+      {step === "picture" && stream ? (
         <div className="flex h-2/3 flex-col relative items-center justify-center gap-2 py-2">
           <video
             autoPlay
@@ -100,6 +98,33 @@ export default function Camera({
           >
             <FontAwesomeIcon size="lg" icon={faImage} />
           </Button>
+        </div>
+      ) : step === "prompt" && photo ? (
+        <div className="flex flex-col h-2/3 gap-4 p-4">
+          <input
+            type="text"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Enter your prompt here..."
+            className="w-full p-2 font-mono text-sm font-light border text-gray-400 border-gray-400 bg-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-700"
+          />
+          <img
+            src={photo}
+            alt="Captured"
+            className="w-full h-auto object-cover rounded"
+          />
+          <div className="flex justify-between">
+            <Button
+              onClick={() => {
+                setStep("picture");
+                setPhoto(null);
+                setPrompt("");
+              }}
+            >
+              Retake photo
+            </Button>
+            <Button>Generate outfit</Button>
+          </div>
         </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-gray-200">
