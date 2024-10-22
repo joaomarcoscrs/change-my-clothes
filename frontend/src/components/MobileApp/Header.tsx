@@ -8,7 +8,7 @@ const Header: React.FC = () => {
       </div>
       <div className="flex flex-col gap-4 w-full">
         <h1 className="text-2xl font-medium">Add an image</h1>
-        <p className=" leading-relaxed">
+        <p className="leading-relaxed font-light">
           Take a photo of your outfit or upload an image.
         </p>
       </div>

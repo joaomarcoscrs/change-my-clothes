@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 export default function Camera() {
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -48,6 +50,13 @@ export default function Camera() {
             <div className="w-full h-full rounded-full border-4 border-white flex items-center justify-center">
               <div className="w-[90%] h-[90%] rounded-full bg-white"></div>
             </div>
+          </Button>
+          <Button
+            isIconOnly
+            className="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-white/50 backdrop-blur-md p-0 border-0"
+            aria-label="Open gallery"
+          >
+            <FontAwesomeIcon icon={faImage} />
           </Button>
         </div>
       ) : (
