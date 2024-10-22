@@ -6,11 +6,13 @@ const Header: React.FC = () => {
       <div className="w-2/5 py-2">
         <img src="public/roboflow-logo.png" alt="Roboflow" />
       </div>
-
-      <h1 className="text-2xl font-bold">Add an image</h1>
-      <p className="text-sm text-gray-500">
-        Upload an image of yourself and we'll change your clothes for you!
-      </p>
+      <div className="flex flex-col gap-2 w-full">
+        <h1 className="text-2xl font-medium">Add an image</h1>
+        <p className="text-sm text-gray-500">
+          Upload an image of yourself and we&apos;ll change your clothes for
+          you!
+        </p>
+      </div>
     </div>
   );
 };
