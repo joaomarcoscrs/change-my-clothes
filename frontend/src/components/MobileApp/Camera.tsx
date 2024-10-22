@@ -39,7 +39,7 @@ export default function Camera() {
     [stream]
   );
 
-  const takePhoto = async () => {
+  async function takePhoto() {
     if (videoRef.current) {
       const canvas = document.createElement("canvas");
       canvas.width = videoRef.current.videoWidth;
@@ -53,7 +53,18 @@ export default function Camera() {
       // - Download it
       console.log("Photo taken:", photo);
     }
-  };
+  }
+
+  async function openGallery() {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      console.log("Image selected:", file);
+    };
+    input.click();
+  }
 
   return (
     <>
@@ -79,6 +90,7 @@ export default function Camera() {
             isIconOnly
             className="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-white/50 backdrop-blur-md p-0 border-0"
             aria-label="Open gallery"
+            onClick={openGallery}
           >
             <FontAwesomeIcon icon={faImage} />
           </Button>
