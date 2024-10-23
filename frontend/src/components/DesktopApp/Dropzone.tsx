@@ -117,7 +117,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
                 </p>
                 <FontAwesomeIcon
                   icon={faCloudUploadAlt}
-                  size="3x"
+                  size="2x"
                   className="text-gray-300 mt-4"
                 />
               </>
