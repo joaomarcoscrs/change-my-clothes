@@ -6,7 +6,7 @@ export default function MobileApp() {
   const [step, setStep] = useState<"picture" | "prompt">("picture");
 
   return (
-    <div className="flex flex-col h-full items-center px-4 py-8">
+    <div className="flex flex-col h-full self-start px-4 py-6">
       <Header step={step} />
       <Camera setStep={setStep} step={step} />
     </div>
