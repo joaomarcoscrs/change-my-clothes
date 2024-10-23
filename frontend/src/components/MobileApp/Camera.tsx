@@ -99,15 +99,20 @@ export default function Camera({
             className="w-full h-full object-contain rounded"
           />
         </div>
-        <Button
-          className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
-          radius="sm"
-          onClick={() => {
-            setResultImage(null);
-          }}
+        <div
+          className="flex flex-col gap-2 bottom-0 left-0 right-0 fixed p-4 border border-t-gray-600 border-r-0 border-l-0 border-b-0 bg-opacity-5"
+          style={{ backgroundColor: "#311C4C" }}
         >
-          Generate again
-        </Button>
+          <Button
+            className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
+            radius="sm"
+            onClick={() => {
+              setResultImage(null);
+            }}
+          >
+            Generate Again
+          </Button>
+        </div>
       </div>
     );
   }
