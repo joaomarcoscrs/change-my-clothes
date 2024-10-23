@@ -152,8 +152,16 @@ export default function Camera({
           </div>
         </div>
       ) : (
-        <div className="w-full h-full flex items-center justify-center bg-gray-200">
-          <Spinner label="Loading camera..." size="lg" />
+        <div
+          className="w-full h-full flex items-center justify-center border border-gray-400 rounded-lg"
+          style={{ background: "rgba(255, 255, 255, 0.10)" }}
+        >
+          <Spinner
+            className="text-white"
+            color="white"
+            label="Loading camera..."
+            size="lg"
+          />
         </div>
       )}
     </>
