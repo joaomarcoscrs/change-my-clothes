@@ -92,7 +92,7 @@ export default function Camera({
   if (resultImage) {
     return (
       <div className="flex flex-col relative items-center gap-2 py-2">
-        <div className="h-1/2 relative">
+        <div className="h-2/3 relative">
           <img
             src={resultImage}
             alt="Generated"
