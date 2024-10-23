@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Dropzone from "./Dropzone";
 import PromptInput from "../PromptInput";
+import { Button } from "@nextui-org/button";
 
 export default function DesktopApp() {
   const [prompt, setPrompt] = useState("");
@@ -22,6 +23,9 @@ export default function DesktopApp() {
           </h1>
           <Dropzone setPhoto={setPhoto} photo={photo} />
           <PromptInput prompt={prompt} setPrompt={setPrompt} />
+          <Button radius="sm" className="w-full mt-4 bg-white text-purple-700">
+            Generate
+          </Button>
         </div>
         <div></div>
         <div />

@@ -73,7 +73,8 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
           />
           <Button
             isIconOnly
-            className="absolute top-2 right-2 bg-red-500 text-white rounded-full"
+            size="sm"
+            className="absolute top-2 right-2 bg-white/30 hover:bg-white/40 text-white"
             onClick={removePhoto}
           >
             <FontAwesomeIcon icon={faTimes} />
@@ -86,7 +87,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onClick={onClick}
-            className={`flex flex-col items-center justify-center w-full h-full p-8 border border-dashed rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition-colors duration-300 ${
+            className={`flex flex-col items-center justify-center w-full h-full p-8 border border-dashed rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-colors duration-300 ${
               isDragActive
                 ? "border-purple-500 bg-purple-50"
                 : "border-gray-400 hover:border-purple-400"
