@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header: React.FC<{ step: "picture" | "prompt" }> = ({ step }) => {
+const Header: React.FC<{ step: "picture" | "prompt" | "result" }> = ({
+  step,
+}) => {
   return (
     <div className="w-full justify-center flex flex-col self-start gap-6 mb-4">
       <div className="flex justify-between self-stretch items-center">
@@ -20,7 +22,9 @@ const Header: React.FC<{ step: "picture" | "prompt" }> = ({ step }) => {
       </div>
       <div className="flex flex-col gap-4 w-full">
         <h1 className="text-2xl font-black text-white">
-          {step === "picture" ? "1. Add an image" : "2. Add a prompt"}
+          {step === "picture" && "1. Add an image"}
+          {step === "prompt" && "2. Add a prompt"}
+          {step === "result" && "3. See the result"}
         </h1>
         {step === "picture" && (
           <p className="font-normal text-base text-white">

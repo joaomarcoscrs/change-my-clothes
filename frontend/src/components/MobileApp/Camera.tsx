@@ -4,15 +4,14 @@ import { Spinner } from "@nextui-org/spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faRotate } from "@fortawesome/free-solid-svg-icons";
 import PromptInput from "../PromptInput";
-import { Link } from "react-router-dom";
 import useApi from "@/hooks/useApi";
 
 export default function Camera({
   step,
   setStep,
 }: {
-  step: "picture" | "prompt";
-  setStep: (step: "picture" | "prompt") => void;
+  step: "picture" | "prompt" | "result";
+  setStep: (step: "picture" | "prompt" | "result") => void;
 }) {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
@@ -108,6 +107,7 @@ export default function Camera({
             radius="sm"
             onClick={() => {
               setResultImage(null);
+              setStep("prompt");
             }}
           >
             Generate Again
@@ -194,6 +194,7 @@ export default function Camera({
                 try {
                   const result = await api.changeClothes(base64Image, prompt);
                   setResultImage(result.result_image);
+                  setStep("result");
                 } catch (error) {
                   console.error("Error generating image:", error);
                 } finally {
