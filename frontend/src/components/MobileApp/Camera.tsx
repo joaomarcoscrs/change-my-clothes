@@ -134,11 +134,16 @@ export default function Camera({
             </Button>
             <Button
               className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
-              style={prompt.length < 3 || !photo ? { backgroundColor: 'rgba(255, 255, 255, 0.10)' } : {}}
+              style={
+                prompt.length < 3 || !photo
+                  ? { backgroundColor: "rgba(255, 255, 255, 0.10)" }
+                  : {}
+              }
               radius="sm"
               disabled={prompt.length < 3 || !photo}
               onClick={async () => {
-                const result = await api.changeClothes(photo, prompt);
+                const base64Image = photo?.split(",")[1];
+                const result = await api.changeClothes(base64Image, prompt);
                 console.log(result);
               }}
             >

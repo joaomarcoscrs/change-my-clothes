@@ -35,7 +35,9 @@ export default function DesktopApp() {
             className="w-full mt-4 bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
             disabled={prompt.length < 3 || !photo}
             onClick={async () => {
-              const result = await api.changeClothes(photo, prompt);
+              // Remove the data URL prefix
+              const base64Image = photo?.split(",")[1];
+              const result = await api.changeClothes(base64Image, prompt);
               console.log(result);
             }}
           >
