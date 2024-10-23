@@ -1,1 +1,1 @@
-docker run --name changemyclothes -p 8000:8000 --rm -d --env-file .env changemyclothes
+docker run --name changemyclothes --rm -p 8000:8000 -d --env-file .env changemyclothes

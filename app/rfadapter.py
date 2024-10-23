@@ -3,7 +3,7 @@ import json
 import os
 
 def infer(imagebase64, prompt):
-    url = 'https://cliphotdog.roboflow.cloud/infer/workflows/roboflow-hjgcq/changemyclothes'
+    url = 'https://changemyclothes.roboflow.cloud/infer/workflows/roboflow-hjgcq/changemyclothes'
     headers = {
         'Content-Type': 'application/json'
     }

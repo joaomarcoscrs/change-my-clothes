@@ -24,7 +24,7 @@ class ChangeClothesRequest(BaseModel):
 @app.post("/api/changeclothes")
 async def change_clothes(request: ChangeClothesRequest):
     result_image = rfadapter.infer(request.image, request.prompt)
-    result_base64 = f"data:image/jpeg;base64,{base64.b64encode(result_image).decode('utf-8')}"
+    result_base64 = f"data:image/jpeg;base64,{result_image}"
     return {"result_image": result_base64}
 
 if __name__ == "__main__":
