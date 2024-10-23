@@ -32,7 +32,12 @@ export default function DesktopApp() {
           <PromptInput prompt={prompt} setPrompt={setPrompt} />
           <Button
             radius="sm"
-            className="w-full h-12 bg-white text-base text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
+            className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
+            style={
+              prompt.length < 3 || !photo
+                ? { backgroundColor: "rgba(255, 255, 255, 0.10)" }
+                : {}
+            }
             disabled={prompt.length < 3 || !photo}
             onClick={async () => {
               const base64Image = photo?.split(",")[1];
@@ -42,9 +47,9 @@ export default function DesktopApp() {
           >
             Generate
           </Button>
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center">
             <Link
-              className="text-center font-bold text-sm"
+              className="text-center font-normal text-gray-100 underline text-sm h-10"
               to="https://calendly.com/joao-roboflow/how-can-i-help-you-clone"
               target="_blank"
             >
