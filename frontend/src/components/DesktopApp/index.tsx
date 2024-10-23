@@ -24,7 +24,11 @@ export default function DesktopApp() {
           </h1>
           <Dropzone setPhoto={setPhoto} photo={photo} />
           <PromptInput prompt={prompt} setPrompt={setPrompt} />
-          <Button radius="sm" className="w-full mt-4 bg-white text-purple-700">
+          <Button
+            radius="sm"
+            className="w-full mt-4 bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
+            disabled={prompt.length < 3 || !photo}
+          >
             Generate
           </Button>
           <div className="flex justify-center mt-8">

@@ -4,6 +4,7 @@ import { Spinner } from "@nextui-org/spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import PromptInput from "../PromptInput";
+import { Link } from "react-router-dom";
 
 export default function Camera({
   step,
@@ -79,7 +80,7 @@ export default function Camera({
             autoPlay
             playsInline
             ref={setVideoRef}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded"
           />
           <Button
             isIconOnly
@@ -106,10 +107,12 @@ export default function Camera({
           <img
             src={photo}
             alt="Captured"
-            className="w-full h-auto object-cover rounded"
+            className="w-full h-full object-cover rounded"
           />
-          <div className="flex justify-between">
+          <div className="flex flex-col gap-2">
             <Button
+              className="bg-white text-purple-700"
+              radius="sm"
               onClick={() => {
                 setStep("picture");
                 setPhoto(null);
@@ -118,7 +121,22 @@ export default function Camera({
             >
               Retake photo
             </Button>
-            <Button>Generate outfit</Button>
+            <Button
+              className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
+              radius="sm"
+              disabled={prompt.length < 3 || !photo}
+            >
+              Generate
+            </Button>
+          </div>
+          <div className="flex justify-center mt-4">
+            <Link
+              className="text-center font-bold text-sm"
+              to="https://calendly.com/joao-roboflow/how-can-i-help-you-clone"
+              target="_blank"
+            >
+              Learn more
+            </Link>
           </div>
         </div>
       ) : (
