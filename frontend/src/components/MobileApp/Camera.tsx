@@ -85,16 +85,17 @@ export default function Camera({
 
   if (resultImage) {
     return (
-      <div className="flex h-2/3 flex-col relative items-center justify-center gap-2 py-2">
-        <img
-          src={resultImage}
-          alt="Generated"
-          className="w-full h-full object-cover rounded"
-        />
+      <div className="flex flex-col relative items-center gap-2 py-2">
+        <div className="h-1/2 relative">
+          <img
+            src={resultImage}
+            alt="Generated"
+            className="w-full h-full object-contain rounded"
+          />
+        </div>
         <Button
-          className="text-white border border-gray-300 bg-transparent h-12 text-base"
+          className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
           radius="sm"
-          variant="bordered"
           onClick={() => {
             setResultImage(null);
           }}

@@ -13,22 +13,26 @@ export default function DesktopApp() {
 
   if (resultImage) {
     return (
-      <div className="flex h-2/3 flex-col relative items-center justify-center gap-2 py-2">
-        <img
-          src={resultImage}
-          alt="Generated"
-          className="w-full h-full object-cover rounded"
-        />
-        <Button
-          className="text-white border border-gray-300 bg-transparent h-12 text-base"
-          radius="sm"
-          variant="bordered"
-          onClick={() => {
-            setResultImage(null);
-          }}
-        >
-          Generate again
-        </Button>
+      <div className="p-10 flex justify-center items-center h-full">
+        <div className="flex flex-col gap-2 h-full w-1/2">
+          <div className="h-2/3">
+            <img
+              src={resultImage}
+              alt="Generated"
+              className="w-full h-full object-contain rounded"
+            />
+          </div>
+          <Button
+            className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
+            radius="sm"
+            variant="bordered"
+            onClick={() => {
+              setResultImage(null);
+            }}
+          >
+            Generate again
+          </Button>
+        </div>
       </div>
     );
   }
