@@ -62,7 +62,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-[300px] gap-4">
+    <div className="flex flex-col items-center justify-center w-full h-[300px] gap-4 border border-gray-500 p-4 rounded-lg border-dashed bg-white/5">
       {photo ? (
         <div className="relative w-full h-full">
           <img
@@ -86,7 +86,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onClick={onClick}
-            className={`flex flex-col items-center justify-center w-full h-full p-8 border border-dashed rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-colors duration-300 ${
+            className={`flex flex-col items-center justify-center w-full h-full p-8hover:bg-white/10 cursor-pointer transition-colors duration-300 ${
               isDragActive
                 ? "border-purple-500 bg-purple-50"
                 : "border-gray-400 hover:border-purple-400"
