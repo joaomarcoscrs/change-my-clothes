@@ -52,9 +52,30 @@ export default function Camera({
     [stream]
   );
 
-  const flipCamera = useCallback(() => {
-    setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
-  }, []);
+  const flipCamera = useCallback(async () => {
+    if (stream) {
+      // Stop all tracks of the current stream
+      stream.getTracks().forEach((track) => track.stop());
+    }
+
+    try {
+      const newFacingMode = facingMode === "user" ? "environment" : "user";
+      const newStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: newFacingMode },
+      });
+
+      setStream(newStream);
+      setFacingMode(newFacingMode);
+
+      // Update video source
+      if (videoRef.current) {
+        videoRef.current.srcObject = newStream;
+      }
+    } catch (error) {
+      console.error("Error switching camera:", error);
+      // Handle the error (e.g., show a message to the user)
+    }
+  }, [stream, facingMode]);
 
   async function takePhoto() {
     if (videoRef.current) {
