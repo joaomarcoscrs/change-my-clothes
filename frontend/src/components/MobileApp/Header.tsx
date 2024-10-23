@@ -24,7 +24,7 @@ const Header: React.FC<{ step: "picture" | "prompt" | "result" }> = ({
         <h1 className="text-2xl font-black text-white">
           {step === "picture" && "1. Add an image"}
           {step === "prompt" && "2. Add a prompt"}
-          {step === "result" && "3. See the result"}
+          {step === "result" && "3. See your new outfit"}
         </h1>
         {step === "picture" && (
           <p className="font-normal text-base text-white">

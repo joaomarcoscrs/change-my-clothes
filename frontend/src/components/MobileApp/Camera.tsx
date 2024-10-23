@@ -110,8 +110,18 @@ export default function Camera({
               setStep("prompt");
             }}
           >
-            Generate Again
+            Add a New Prompt
           </Button>
+          <Button
+              className="text-white border border-gray-300 bg-transparent h-12 text-base"
+              radius="sm"
+              variant="bordered"
+              onClick={() => {
+                setResultImage(null);
+              }}
+            >
+              Use a New Photo
+            </Button>
         </div>
       </div>
     );
@@ -139,7 +149,7 @@ export default function Camera({
           </Button>
           <Button
             isIconOnly
-            className="absolute bottom-4 right-4 bg-white/50 backdrop-blur-md p-0 border-0"
+            className="absolute bottom-4 left-4 bg-white/50 backdrop-blur-md p-0 border-0"
             aria-label="Open gallery"
             onClick={openGallery}
           >
@@ -147,7 +157,7 @@ export default function Camera({
           </Button>
           <Button
             isIconOnly
-            className="absolute bottom-4 left-4 bg-white/50 backdrop-blur-md p-0 border-0"
+            className="absolute bottom-4 right-4 bg-white/50 backdrop-blur-md p-0 border-0"
             aria-label="Flip camera"
             onClick={flipCamera}
           >
@@ -167,18 +177,6 @@ export default function Camera({
             style={{ backgroundColor: "#311C4C" }}
           >
             <Button
-              className="text-white border border-gray-300 bg-transparent h-12 text-base"
-              radius="sm"
-              variant="bordered"
-              onClick={() => {
-                setStep("picture");
-                setPhoto(null);
-                setPrompt("");
-              }}
-            >
-              Retake Photo
-            </Button>
-            <Button
               className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
               style={
                 prompt.length < 3 || !photo
@@ -193,6 +191,7 @@ export default function Camera({
                 const base64Image = photo?.split(",")[1];
                 try {
                   const result = await api.changeClothes(base64Image, prompt);
+
                   setResultImage(result.result_image);
                   setStep("result");
                 } catch (error) {
@@ -203,6 +202,18 @@ export default function Camera({
               }}
             >
               Generate
+            </Button>
+            <Button
+              className="text-white border border-gray-300 bg-transparent h-12 text-base"
+              radius="sm"
+              variant="bordered"
+              onClick={() => {
+                setStep("picture");
+                setPhoto(null);
+                setPrompt("");
+              }}
+            >
+              Retake Photo
             </Button>
           </div>
         </div>
