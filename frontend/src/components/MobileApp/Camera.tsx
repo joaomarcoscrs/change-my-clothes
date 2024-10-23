@@ -17,6 +17,7 @@ export default function Camera({
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
   const [prompt, setPrompt] = useState<string>("");
+  const [resultImage, setResultImage] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -82,6 +83,28 @@ export default function Camera({
 
   const api = useApi();
 
+  if (resultImage) {
+    return (
+      <div className="flex h-2/3 flex-col relative items-center justify-center gap-2 py-2">
+        <img
+          src={resultImage}
+          alt="Generated"
+          className="w-full h-full object-cover rounded"
+        />
+        <Button
+          className="text-white border border-gray-300 bg-transparent h-12 text-base"
+          radius="sm"
+          variant="bordered"
+          onClick={() => {
+            setResultImage(null);
+          }}
+        >
+          Generate again
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <>
       {step === "picture" && stream ? (
@@ -144,7 +167,7 @@ export default function Camera({
               onClick={async () => {
                 const base64Image = photo?.split(",")[1];
                 const result = await api.changeClothes(base64Image, prompt);
-                console.log(result);
+                setResultImage(result.result_image);
               }}
             >
               Generate
