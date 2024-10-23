@@ -119,9 +119,9 @@ export default function Camera({
             alt="Captured"
             className="w-full h-full object-cover rounded"
           />
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 bottom-0 left-0 right-0 fixed p-4">
             <Button
-              className="border-1 border-gray-300 text-white hover:bg-white/5"
+              className="text-white border border-gray-300 bg-transparent h-12 text-base"
               radius="sm"
               variant="bordered"
               onClick={() => {
@@ -130,10 +130,11 @@ export default function Camera({
                 setPrompt("");
               }}
             >
-              Retake photo
+              Retake Photo
             </Button>
             <Button
-              className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
+              className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
+              style={prompt.length < 3 || !photo ? { backgroundColor: 'rgba(255, 255, 255, 0.10)' } : {}}
               radius="sm"
               disabled={prompt.length < 3 || !photo}
               onClick={async () => {
@@ -143,15 +144,6 @@ export default function Camera({
             >
               Generate
             </Button>
-          </div>
-          <div className="flex justify-center mt-4">
-            <Link
-              className="text-center font-bold text-sm"
-              to="https://calendly.com/joao-roboflow/how-can-i-help-you-clone"
-              target="_blank"
-            >
-              Learn more
-            </Link>
           </div>
         </div>
       ) : (

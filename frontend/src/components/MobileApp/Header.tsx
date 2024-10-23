@@ -4,11 +4,22 @@ import { Link } from "react-router-dom";
 const Header: React.FC<{ step: "picture" | "prompt" }> = ({ step }) => {
   return (
     <div className="w-full justify-center flex flex-col self-start gap-6 mb-4">
-      <Link className="w-28" to="https://roboflow.com" target="_blank">
-        <img src="public/roboflow-logo.png" alt="Roboflow" />
-      </Link>
+      <div className="flex justify-between self-stretch items-center">
+        <div className="w-28">
+          <a href="https://roboflow.com/">
+            <img src="public/roboflow-logo.png" alt="Roboflow" />
+          </a>
+        </div>
+        <Link
+          className="text-center font-normal text-gray-100 underline text-sm"
+          to="https://calendly.com/joao-roboflow/how-can-i-help-you-clone"
+          target="_blank"
+        >
+          Learn more
+        </Link>
+      </div>
       <div className="flex flex-col gap-4 w-full">
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-black text-white">
           {step === "picture" ? "1. Add an image" : "2. Add a prompt"}
         </h1>
         {step === "picture" && (
