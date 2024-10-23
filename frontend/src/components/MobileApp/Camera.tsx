@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faRotate } from "@fortawesome/free-solid-svg-icons";
 import PromptInput from "../PromptInput";
 import { Link } from "react-router-dom";
 import useApi from "@/hooks/useApi";
@@ -19,13 +19,14 @@ export default function Camera({
   const [prompt, setPrompt] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [resultImage, setResultImage] = useState<string | null>(null);
+  const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     async function initCamera() {
       try {
         const cameraStream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: { facingMode: facingMode },
         });
         setStream(cameraStream);
       } catch (error) {
@@ -40,7 +41,7 @@ export default function Camera({
         stream.getTracks().forEach((track) => track.stop());
       }
     };
-  }, []);
+  }, [facingMode]);
 
   const setVideoRef = useCallback(
     (videoElement: HTMLVideoElement | null) => {
@@ -51,6 +52,10 @@ export default function Camera({
     },
     [stream]
   );
+
+  const flipCamera = useCallback(() => {
+    setFacingMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
+  }, []);
 
   async function takePhoto() {
     if (videoRef.current) {
@@ -134,6 +139,14 @@ export default function Camera({
             onClick={openGallery}
           >
             <FontAwesomeIcon size="lg" icon={faImage} />
+          </Button>
+          <Button
+            isIconOnly
+            className="absolute bottom-4 left-4 bg-white/50 backdrop-blur-md p-0 border-0"
+            aria-label="Flip camera"
+            onClick={flipCamera}
+          >
+            <FontAwesomeIcon size="lg" icon={faRotate} />
           </Button>
         </div>
       ) : step === "prompt" && photo ? (
