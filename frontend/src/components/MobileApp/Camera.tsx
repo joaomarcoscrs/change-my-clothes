@@ -72,6 +72,7 @@ export default function Camera({
         const fileReader = new FileReader();
         fileReader.onload = (e) => {
           setPhoto(e.target?.result as string);
+          setStep("prompt");
         };
         fileReader.readAsDataURL(file);
       }

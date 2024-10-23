@@ -27,7 +27,6 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
     reader.onload = (e) => {
       const base64String = e.target?.result as string;
       setPhoto(base64String);
-      console.log("File accepted and converted to base64:", file.name);
     };
     reader.readAsDataURL(file);
   }
