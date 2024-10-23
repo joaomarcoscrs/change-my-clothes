@@ -11,7 +11,7 @@ const Header: React.FC<{ step: "picture" | "prompt" }> = ({ step }) => {
           </a>
         </div>
         <Link
-          className="text-center font-normal text-gray-100 underline text-sm"
+          className="text-center font-normal text-gray-100 underline text-sm h-10"
           to="https://calendly.com/joao-roboflow/how-can-i-help-you-clone"
           target="_blank"
         >
