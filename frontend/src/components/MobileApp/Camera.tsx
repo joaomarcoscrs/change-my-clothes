@@ -120,8 +120,9 @@ export default function Camera({
           />
           <div className="flex flex-col gap-2">
             <Button
-              className="bg-white text-purple-700"
+              className="border-1 border-gray-300 text-white hover:bg-white/5"
               radius="sm"
+              variant="bordered"
               onClick={() => {
                 setStep("picture");
                 setPhoto(null);
