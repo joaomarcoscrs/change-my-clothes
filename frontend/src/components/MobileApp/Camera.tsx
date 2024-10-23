@@ -175,9 +175,21 @@ export default function Camera({
             className="w-full h-full object-cover rounded"
           />
           <div
-            className="flex flex-col gap-2 bottom-0 left-0 right-0 fixed p-4 border border-t-gray-600 border-r-0 border-l-0 border-b-0 bg-opacity-5"
+            className="flex flex-row self-start justify-between gap-2 bottom-0 left-0 right-0 fixed p-4 border border-t-gray-600 border-r-0 border-l-0 border-b-0 bg-opacity-5"
             style={{ backgroundColor: "#311C4C" }}
           >
+            <Button
+              className="text-white border-none underline bg-transparent h-12 text-base"
+              radius="sm"
+              variant="bordered"
+              onClick={() => {
+                setStep("picture");
+                setPhoto(null);
+                setPrompt("");
+              }}
+            >
+              Retake Photo
+            </Button>
             <Button
               className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed border-gray-300 border disabled:border-0 h-12 text-base"
               style={
@@ -204,18 +216,6 @@ export default function Camera({
               }}
             >
               Generate
-            </Button>
-            <Button
-              className="text-white border border-gray-300 bg-transparent h-12 text-base"
-              radius="sm"
-              variant="bordered"
-              onClick={() => {
-                setStep("picture");
-                setPhoto(null);
-                setPrompt("");
-              }}
-            >
-              Retake Photo
             </Button>
           </div>
         </div>
