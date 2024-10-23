@@ -113,15 +113,17 @@ export default function Camera({
             Add a New Prompt
           </Button>
           <Button
-              className="text-white border border-gray-300 bg-transparent h-12 text-base"
-              radius="sm"
-              variant="bordered"
-              onClick={() => {
-                setResultImage(null);
-              }}
-            >
-              Use a New Photo
-            </Button>
+            className="text-white border border-gray-300 bg-transparent h-12 text-base"
+            radius="sm"
+            variant="bordered"
+            onClick={() => {
+              setResultImage(null);
+              setPrompt("");
+              setStep("picture");
+            }}
+          >
+            Use a New Photo
+          </Button>
         </div>
       </div>
     );
