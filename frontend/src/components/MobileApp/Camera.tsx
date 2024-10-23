@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import PromptInput from "../PromptInput";
 import { Link } from "react-router-dom";
+import useApi from "@/hooks/useApi";
 
 export default function Camera({
   step,
@@ -67,10 +68,18 @@ export default function Camera({
     input.accept = "image/*";
     input.onchange = (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
-      console.log("Image selected:", file);
+      if (file) {
+        const fileReader = new FileReader();
+        fileReader.onload = (e) => {
+          setPhoto(e.target?.result as string);
+        };
+        fileReader.readAsDataURL(file);
+      }
     };
     input.click();
   }
+
+  const api = useApi();
 
   return (
     <>
@@ -125,6 +134,10 @@ export default function Camera({
               className="bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
               radius="sm"
               disabled={prompt.length < 3 || !photo}
+              onClick={async () => {
+                const result = await api.changeClothes(photo, prompt);
+                console.log(result);
+              }}
             >
               Generate
             </Button>

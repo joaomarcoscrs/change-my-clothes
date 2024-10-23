@@ -3,10 +3,12 @@ import Dropzone from "./Dropzone";
 import PromptInput from "../PromptInput";
 import { Button } from "@nextui-org/button";
 import { Link } from "react-router-dom";
+import useApi from "../../hooks/useApi";
 
 export default function DesktopApp() {
   const [prompt, setPrompt] = useState("");
   const [photo, setPhoto] = useState<string | null>(null);
+  const api = useApi();
 
   return (
     <div className="p-10 flex justify-center items-center h-full">
@@ -28,6 +30,10 @@ export default function DesktopApp() {
             radius="sm"
             className="w-full mt-4 bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
             disabled={prompt.length < 3 || !photo}
+            onClick={async () => {
+              const result = await api.changeClothes(photo, prompt);
+              console.log(result);
+            }}
           >
             Generate
           </Button>
@@ -41,7 +47,7 @@ export default function DesktopApp() {
             </Link>
           </div>
         </div>
-        <div></div>
+        <div />
         <div />
       </div>
     </div>
