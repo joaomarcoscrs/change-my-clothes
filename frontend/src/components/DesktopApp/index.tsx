@@ -24,18 +24,17 @@ export default function DesktopApp() {
             alt="Roboflow"
           />
         </Link>
-        <div>
-          <h1 className="text-2xl font-semibold mb-6">
+        <div className="flex flex-col gap-6">
+          <h1 className="text-2xl font-semibold">
             Upload an image and add a prompt
           </h1>
           <Dropzone setPhoto={setPhoto} photo={photo} />
           <PromptInput prompt={prompt} setPrompt={setPrompt} />
           <Button
             radius="sm"
-            className="w-full mt-4 bg-white text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
+            className="w-full h-12 bg-white text-base text-purple-700 disabled:bg-gray-400 disabled:text-gray-800 disabled:cursor-not-allowed"
             disabled={prompt.length < 3 || !photo}
             onClick={async () => {
-              // Remove the data URL prefix
               const base64Image = photo?.split(",")[1];
               const result = await api.changeClothes(base64Image, prompt);
               console.log(result);
