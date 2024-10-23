@@ -120,6 +120,7 @@ export default function Camera({
               setResultImage(null);
               setPrompt("");
               setStep("picture");
+              setPhoto(null);
             }}
           >
             Use a New Photo
