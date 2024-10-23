@@ -144,7 +144,10 @@ export default function Camera({
             alt="Captured"
             className="w-full h-full object-cover rounded"
           />
-          <div className="flex flex-col gap-2 bottom-0 left-0 right-0 fixed p-4">
+          <div
+            className="flex flex-col gap-2 bottom-0 left-0 right-0 fixed p-4 border border-t-gray-600 border-r-0 border-l-0 border-b-0 bg-opacity-5"
+            style={{ backgroundColor: "#311C4C" }}
+          >
             <Button
               className="text-white border border-gray-300 bg-transparent h-12 text-base"
               radius="sm"
