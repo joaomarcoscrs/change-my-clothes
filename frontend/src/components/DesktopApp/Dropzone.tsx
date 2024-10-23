@@ -2,11 +2,7 @@ import React, { useState, useRef } from "react";
 import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCloudUploadAlt,
-  faImage,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCloudUploadAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 interface DropzoneProps {
   setPhoto: (file: File | null) => void;
@@ -90,10 +86,10 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onClick={onClick}
-            className={`flex flex-col items-center justify-center w-full h-full p-8 border-2 border-dashed rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer transition-colors duration-300 ${
+            className={`flex flex-col items-center justify-center w-full h-full p-8 border border-dashed rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer transition-colors duration-300 ${
               isDragActive
                 ? "border-purple-500 bg-purple-50"
-                : "border-gray-300 hover:border-purple-400"
+                : "border-gray-400 hover:border-purple-400"
             }`}
           >
             <input
@@ -126,13 +122,6 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
           {error && (
             <p className="text-sm font-mono text-red-500 mt-2">{error}</p>
           )}
-          <Button
-            className="font-mono bg-purple-600 text-white hover:bg-purple-700"
-            endContent={<FontAwesomeIcon icon={faImage} />}
-            onClick={onClick}
-          >
-            Select from gallery
-          </Button>
         </>
       )}
     </div>
