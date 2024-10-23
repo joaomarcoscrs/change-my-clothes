@@ -62,7 +62,7 @@ const Dropzone: React.FC<DropzoneProps> = ({ setPhoto, photo }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-[300px] gap-4 border border-gray-500 p-4 rounded-lg border-dashed bg-white/5">
+    <div className="flex flex-col items-center justify-center w-full h-[300px] gap-4 border border-gray-400 p-4 rounded-lg border-dashed bg-white/5">
       {photo ? (
         <div className="relative w-full h-full">
           <img
