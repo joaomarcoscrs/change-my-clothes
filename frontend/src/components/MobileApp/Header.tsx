@@ -8,7 +8,7 @@ const Header: React.FC<{ step: "picture" | "prompt" }> = ({ step }) => {
       </div>
       <div className="flex flex-col gap-4 w-full">
         <h1 className="text-2xl font-semibold">
-          {step === "picture" ? "Add an image" : "Add a prompt"}
+          {step === "picture" ? "1. Add an image" : "2. Add a prompt"}
         </h1>
         {step === "picture" && (
           <p className="leading-relaxed font-light">

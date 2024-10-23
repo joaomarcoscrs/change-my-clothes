@@ -2,6 +2,7 @@ import { useState } from "react";
 import Dropzone from "./Dropzone";
 import PromptInput from "../PromptInput";
 import { Button } from "@nextui-org/button";
+import { Link } from "react-router-dom";
 
 export default function DesktopApp() {
   const [prompt, setPrompt] = useState("");
@@ -26,6 +27,15 @@ export default function DesktopApp() {
           <Button radius="sm" className="w-full mt-4 bg-white text-purple-700">
             Generate
           </Button>
+          <div className="flex justify-center mt-8">
+            <Link
+              className="text-center font-bold text-sm"
+              to="https://calendly.com/joao-roboflow/how-can-i-help-you-clone"
+              target="_blank"
+            >
+              Learn more
+            </Link>
+          </div>
         </div>
         <div></div>
         <div />
