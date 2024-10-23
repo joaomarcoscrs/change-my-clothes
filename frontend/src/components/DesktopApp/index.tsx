@@ -8,6 +8,7 @@ import useApi from "../../hooks/useApi";
 export default function DesktopApp() {
   const [prompt, setPrompt] = useState("");
   const [photo, setPhoto] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [resultImage, setResultImage] = useState<string | null>(null);
   const api = useApi();
 
@@ -15,6 +16,17 @@ export default function DesktopApp() {
     return (
       <div className="p-10 flex justify-center items-center h-full">
         <div className="flex flex-col gap-2 h-full w-1/2">
+          <Link
+            className="w-full flex items-center justify-center"
+            to="https://roboflow.com"
+            target="_blank"
+          >
+            <img
+              className="w-36 pb-10"
+              src="public/roboflow-logo.png"
+              alt="Roboflow"
+            />
+          </Link>
           <div className="h-2/3">
             <img
               src={resultImage}
@@ -32,6 +44,15 @@ export default function DesktopApp() {
           >
             Generate again
           </Button>
+          <div className="flex justify-center">
+            <Link
+              className="text-center font-normal text-gray-100 underline text-sm h-10"
+              to="https://calendly.com/joao-roboflow/how-can-i-help-you-clone"
+              target="_blank"
+            >
+              Learn more
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -67,10 +88,18 @@ export default function DesktopApp() {
             }
             disabled={prompt.length < 3 || !photo}
             onClick={async () => {
-              const base64Image = photo?.split(",")[1];
-              const result = await api.changeClothes(base64Image, prompt);
-              setResultImage(result.result_image);
+              setLoading(true);
+              try {
+                const base64Image = photo?.split(",")[1];
+                const result = await api.changeClothes(base64Image, prompt);
+                setResultImage(result.result_image);
+              } catch (error) {
+                console.error("Error generating image:", error);
+              } finally {
+                setLoading(false);
+              }
             }}
+            isLoading={loading}
           >
             Generate
           </Button>

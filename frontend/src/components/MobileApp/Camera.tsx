@@ -17,6 +17,7 @@ export default function Camera({
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
   const [prompt, setPrompt] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [resultImage, setResultImage] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -165,10 +166,18 @@ export default function Camera({
               }
               radius="sm"
               disabled={prompt.length < 3 || !photo}
+              isLoading={loading}
               onClick={async () => {
+                setLoading(true);
                 const base64Image = photo?.split(",")[1];
-                const result = await api.changeClothes(base64Image, prompt);
-                setResultImage(result.result_image);
+                try {
+                  const result = await api.changeClothes(base64Image, prompt);
+                  setResultImage(result.result_image);
+                } catch (error) {
+                  console.error("Error generating image:", error);
+                } finally {
+                  setLoading(false);
+                }
               }}
             >
               Generate
