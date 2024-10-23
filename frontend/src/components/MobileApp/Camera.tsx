@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
+import PromptInput from "../PromptInput";
 
 export default function Camera({
   step,
@@ -101,13 +102,7 @@ export default function Camera({
         </div>
       ) : step === "prompt" && photo ? (
         <div className="flex flex-col h-2/3 gap-4">
-          <input
-            type="text"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Enter your prompt here..."
-            className="w-full p-2 font-mono text-sm font-light border text-gray-400 border-gray-400 bg-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-700"
-          />
+          <PromptInput prompt={prompt} setPrompt={setPrompt} />
           <img
             src={photo}
             alt="Captured"

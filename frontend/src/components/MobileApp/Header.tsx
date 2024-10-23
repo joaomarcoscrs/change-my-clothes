@@ -7,7 +7,7 @@ const Header: React.FC<{ step: "picture" | "prompt" }> = ({ step }) => {
         <img src="public/roboflow-logo.png" alt="Roboflow" />
       </div>
       <div className="flex flex-col gap-4 w-full">
-        <h1 className="text-2xl font-medium">
+        <h1 className="text-2xl font-semibold">
           {step === "picture" ? "Add an image" : "Add a prompt"}
         </h1>
         {step === "picture" && (
