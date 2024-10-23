@@ -6,9 +6,9 @@ const Header: React.FC<{ step: "picture" | "prompt" }> = ({ step }) => {
     <div className="w-full justify-center flex flex-col self-start gap-6 mb-4">
       <div className="flex justify-between self-stretch items-center">
         <div className="w-28">
-          <a href="https://roboflow.com/">
+          <Link to="https://roboflow.com/" target="_blank">
             <img src="public/roboflow-logo.png" alt="Roboflow" />
-          </a>
+          </Link>
         </div>
         <Link
           className="text-center font-normal text-gray-100 underline text-sm h-10"
