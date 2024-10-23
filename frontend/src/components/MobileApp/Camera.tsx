@@ -122,6 +122,7 @@ export default function Camera({
             <Button
               className="text-white border border-gray-300 bg-transparent h-12 text-base"
               radius="sm"
+              variant="bordered"
               onClick={() => {
                 setStep("picture");
                 setPhoto(null);

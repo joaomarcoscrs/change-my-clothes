@@ -13,13 +13,17 @@ export default function DesktopApp() {
   return (
     <div className="p-10 flex justify-center items-center h-full">
       <div className="flex flex-col justify-between h-full w-1/2">
-        <div className="w-full flex items-center justify-center">
+        <Link
+          className="w-full flex items-center justify-center"
+          to="https://roboflow.com"
+          target="_blank"
+        >
           <img
             className="w-36 pb-10"
             src="public/roboflow-logo.png"
             alt="Roboflow"
           />
-        </div>
+        </Link>
         <div>
           <h1 className="text-2xl font-semibold mb-6">
             Upload an image and add a prompt
